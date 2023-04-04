@@ -59,8 +59,15 @@ class App
     op
   end
 
-  def all_books
-  end
+  def all_books; end
 
-  def 
+  def all_albums; end
+
+  def all_games; end
+
+  def all_genres; end
+
+  def all_labels; end
+
+  def all_authors; end
 end

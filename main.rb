@@ -18,8 +18,6 @@ def items_lists(app)
     when 2
       app.all_albums
     when 3
-      app.all_movies
-    when 4
       app.all_games
     else
       break
@@ -36,8 +34,6 @@ def other_lists(app)
       app.all_labels
     when 3
       app.all_authors
-    when 4
-      app.all_sources
     else
       break
     end
