@@ -44,9 +44,11 @@ def add_items(app)
   loop do
     case app.add
     when 1
-      list_items
+      app.add_book
     when 2
-      app.add
+      app.add_album
+    when 3
+      app.add_game
     else
       break
     end

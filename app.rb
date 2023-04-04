@@ -59,6 +59,18 @@ class App
     op
   end
 
+  def add_book
+    puts "Please add a book"
+  end
+
+  def add_album
+    puts "Add an album"
+  end
+
+  def add_game
+    puts "Add a new Game"
+  end
+
   def all_books; end
 
   def all_albums; end
