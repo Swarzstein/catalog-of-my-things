@@ -58,4 +58,9 @@ class App
     add unless op <= 4 && op.positive?
     op
   end
+
+  def all_books
+  end
+
+  def 
 end
