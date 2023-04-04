@@ -48,9 +48,9 @@ After you're finished please remove all the comments and instructions!
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [oop-school-library] <a name="about-project"></a>
+# 📖 Catalog of my things <a name="about-project"></a>
 
-**[oop-school-library]** Is a Library manager for a school.
+**Catalog of my things** Is a Ruby built app that allows users to add items with preferences (authors, games, music ...etc).
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -87,8 +87,8 @@ ruby installed
 
 Clone this repository to your desired folder:
 
-  git clone https://github.com/Swarzstein/oop-school-library.git
-  cd oop-school-library
+  git clone https://github.com/Swarzstein/catalog-of-my-things.git
+  cd catalog-of-my-things
 
 
 ### Install
@@ -101,7 +101,7 @@ Install this project with:
 
 To run the project, execute the following command:
 
-ruby app.rb
+ruby main.rb
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -126,8 +126,8 @@ ruby app.rb
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Adding people]**
-- [ ] **[Adding books]**
+- [ ] **[Serch/Filter options]**
+- [ ] **[Remove Items]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
