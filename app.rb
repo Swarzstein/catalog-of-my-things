@@ -60,15 +60,15 @@ class App
   end
 
   def add_book
-    puts "Please add a book"
+    puts 'Please add a book'
   end
 
   def add_album
-    puts "Add an album"
+    puts 'Add an album'
   end
 
   def add_game
-    puts "Add a new Game"
+    puts 'Add a new Game'
   end
 
   def all_books; end
