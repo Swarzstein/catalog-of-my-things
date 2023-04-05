@@ -95,13 +95,13 @@ class App
 
   def all_authors; end
 
-# saving and loading data
+  # saving and loading data
   def save_data
-    puts "Data saved successfully !!! CONGRATS"
+    puts 'Data saved successfully !!! CONGRATS'
   end
 
   def load_data
     CreateGenre.load_genre
-    puts "Data loaded sucessfully !!! CONGRATS"
+    puts 'Data loaded sucessfully !!! CONGRATS'
   end
 end
