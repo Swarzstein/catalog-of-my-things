@@ -1,4 +1,5 @@
 require 'date'
+require_relative 'genre'
 
 class Item
   attr_accessor :genre, :author, :lable, :publish_date, :archived
@@ -10,6 +11,12 @@ class Item
     @lable = nil
     @publish_date = publish_date
     @archived = false
+  end
+
+
+  def add_genre(genre)
+    @genre = genre
+    genre.add_item(self) unless genre.items.include?(self)
   end
 
   private
