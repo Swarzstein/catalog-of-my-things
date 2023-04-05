@@ -1,10 +1,10 @@
 require_relative 'music_album'
 require_relative 'genre'
-require './modules/create_genre_module'
+require './modules/genre_module'
 require './modules/music_album_module'
 
 class App
-  include CreateGenre
+  include GenreModule
   include MusicAlbumModule
 
   def clear_screen
@@ -88,7 +88,7 @@ class App
   def all_games; end
 
   def all_genres
-    CreateGenre.list_all_genre
+    GenreModule.list_all_genre
   end
 
   def all_labels; end
@@ -101,7 +101,7 @@ class App
   end
 
   def load_data
-    CreateGenre.load_genre
+    GenreModule.load_genre
     puts 'Data loaded sucessfully !!! CONGRATS'
   end
 end

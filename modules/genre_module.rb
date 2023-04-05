@@ -1,7 +1,7 @@
 require './classes/genre'
 require 'json'
 
-module CreateGenre
+module GenreModule
   module_function
 
   @all_genre = []

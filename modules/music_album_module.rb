@@ -1,4 +1,4 @@
-require_relative 'create_genre_module'
+require_relative 'genre_module'
 require_relative 'label_module'
 require './classes/music_album'
 require_relative 'author_module'
@@ -7,7 +7,7 @@ require 'json'
 module MusicAlbumModule
   module_function
 
-  include CreateGenre
+  include GenreModule
   include LabelModule
   include AuthorModule
 
@@ -15,7 +15,7 @@ module MusicAlbumModule
 
   def music_main
     label = LabelModule.add_label_ui
-    genre = CreateGenre.show_genre
+    genre = GenreModule.show_genre
     author = AuthorModule.add_author_ui
     print('Enter the publish date (YYYY-MM-DD): ')
     publish_date = gets.chomp
