@@ -1,60 +1,71 @@
 require 'date'
+require 'json'
 
 module Store
   def save_data
     save_books
-    save_person
-    save_rentals
   end
 
-  def save_books
-    File.open('store/books.json', 'w') { |s| s << @books.to_json }
+  def to_hash(book)
+    {
+      id: book.id,
+      genre: book.genre,
+      author: book.author,
+      label: book.label,
+      publish_date: book.publish_date,
+      archived: book.archived,
+      publisher: book.publisher,
+      cover_state: book.cover_state
+    }
   end
 
-  def save_person
-    File.open('store/person.json', 'w') { |s| s << @persons.to_json }
+  
+
+  
+
+  def save(books, labels)
+    def save_books(books)
+      hash_arr = []
+      @books.each {|book| hash_arr << {publisher: book.publisher, cover_state: book.cover_state, publish_date: book.publish_date}}
+      File.open('storage/books.json', 'w') {|s| s << hash_arr.to_json}
+      puts 'saving books'
+      puts hash_arr
+    end
+  
+    def save_labels(labels)
+      hash_arr = []
+      @labels.each {|label| hash_arr << {title: label.title, color: label.color, items: label.items}}
+      File.open('storage/labels.json', 'w') { |s| s << hash_arr.to_json }
+      puts 'saving data'
+      puts hash_arr
+    end
+    save_books(books)
+    save_labels(labels)
   end
-
-  def save_rentals
-    File.open('store/rentals.json', 'w') { |s| s << @rentals.to_json }
-  end
-
-  def load_data
-    load_books
-    load_person
-    load_rentals
-  end
-
-  def load_books
-    return unless File.exist?('store/books.json') && File.size?('store/books.json')
-
-    store = JSON.parse(File.read('store/books.json'))
-    store.map { |book| @books.push(Book.new(book['title'], book['author'])) }
-  end
-
-  def load_person
-    return unless File.exist?('store/person.json') && File.size?('store/person.json')
-
-    store = JSON.parse(File.read('store/person.json'))
-    store.map do |person|
-      if person['class'] == 'Student'
-
-        @persons.push(Student.new(person['age'], person['name'], person['id'],
-                                  parent_permission: person['parent_permission']))
-      else
-        @persons.push(Teacher.new(person['age'], person['specialization'], person['name'], person['id'],
-                                  parent_permission: person['parent_permission']))
+  
+  def load(books, labels)
+    def load_books(books)
+      return unless File.exist?('storage/books.json') && File.size?('storage/books.json')
+  
+      storage = JSON.parse(File.read('storage/books.json'))
+      storage.map do |book|
+        @books.push(Book.new(book['publisher'], book['cover_state'], book['publish_date']))
       end
     end
-  end
-
-  def load_rentals
-    return unless File.exist?('store/rentals.json') && File.size?('store/rentals.json')
-
-    JSON.parse(File.read('store/rentals.json')).each do |rental|
-      rental_book = @books.find { |book| book.title == rental['book']['title'] }
-      rental_person = @persons.find { |person| person.id == rental['person']['id'] }
-      @rentals.push(Rental.new(rental['date'], rental_book, rental_person))
+  
+    def load_labels(labels)
+      return unless File.exist?('storage/labels.json') && File.size?('storage/labels.json')
+      storage = JSON.parse(File.read('storage/labels.json'))
+      puts 'loading data'
+      puts storage
+      storage.map do |label|
+        @labels.push(Label.new(label['title'], label['color']))
+      end
     end
+    @labels.each do |label|
+      label.items.each {|item| item.label = label}
+    end
+    load_books(books)
+    load_labels(labels)
   end
 end
