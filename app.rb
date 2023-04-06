@@ -1,4 +1,12 @@
+require_relative 'music_album'
+require_relative 'genre'
+require './modules/genre_module'
+require './modules/music_album_module'
+
 class App
+  include GenreModule
+  include MusicAlbumModule
+
   def clear_screen
     system('cls')
     system('clear')
@@ -64,7 +72,7 @@ class App
   end
 
   def add_album
-    puts 'Add an album'
+    MusicAlbumModule.music_main
   end
 
   def add_game
@@ -73,13 +81,27 @@ class App
 
   def all_books; end
 
-  def all_albums; end
+  def all_albums
+    MusicAlbumModule.list_all_albums
+  end
 
   def all_games; end
 
-  def all_genres; end
+  def all_genres
+    GenreModule.list_all_genre
+  end
 
   def all_labels; end
 
   def all_authors; end
+
+  # saving and loading data
+  def save_data
+    puts 'Data saved successfully !!! CONGRATS'
+  end
+
+  def load_data
+    GenreModule.load_genre
+    puts 'Data loaded sucessfully !!! CONGRATS'
+  end
 end
