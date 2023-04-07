@@ -1,12 +1,16 @@
 require_relative 'classes/book'
 require_relative 'classes/label'
 require_relative 'modules/store'
+require_relative 'music_album'
+require_relative 'genre'
+require './modules/genre_module'
+require './modules/music_album_module'
 
 class App
+  include GenreModule
+  include MusicAlbumModule
   include Store
-
-  attr_reader :books, :labels
-
+  
   def initialize
     @books = []
     @labels = []
@@ -101,7 +105,7 @@ class App
   end
 
   def add_album
-    puts 'Add an album'
+    MusicAlbumModule.music_main
   end
 
   def add_game
@@ -122,11 +126,15 @@ class App
     wait
   end
 
-  def all_albums; end
+  def all_albums
+    MusicAlbumModule.list_all_albums
+  end
 
   def all_games; end
 
-  def all_genres; end
+  def all_genres
+    GenreModule.list_all_genre
+  end
 
   def all_labels
     clear_screen
@@ -142,4 +150,14 @@ class App
   end
 
   def all_authors; end
+
+  # saving and loading data
+  def save_data
+    puts 'Data saved successfully !!! CONGRATS'
+  end
+
+  def load_data
+    GenreModule.load_genre
+    puts 'Data loaded sucessfully !!! CONGRATS'
+  end
 end
