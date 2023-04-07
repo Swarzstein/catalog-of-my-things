@@ -4,7 +4,7 @@ require_relative 'modules/store'
 
 class App
   include Store
-  
+
   attr_reader :books, :labels
 
   def initialize
@@ -18,7 +18,7 @@ class App
   end
 
   def clear_screen
-    #system('cls')
+    # system('cls')
     system('clear')
   end
 
@@ -31,7 +31,7 @@ class App
 
   def menu
     header
-    puts "Please choose an option by entering a number: "
+    puts 'Please choose an option by entering a number: '
     puts '1 - See Lists of items'
     puts '2 - See other Lists'
     puts '3 - Add items'
@@ -43,7 +43,7 @@ class App
 
   def items_lists
     header
-    puts "Please choose an option by entering a number: "
+    puts 'Please choose an option by entering a number: '
     puts '1 - List all books'
     puts '2 - List all music albums'
     puts '3 - List of games'
@@ -55,7 +55,7 @@ class App
 
   def other_lists
     header
-    puts "Please choose an option by entering a number: "
+    puts 'Please choose an option by entering a number: '
     puts '1 - List all genres'
     puts '2 - List all labels'
     puts '3 - List all authors'
@@ -67,7 +67,7 @@ class App
 
   def add
     header
-    puts "Please choose an option by entering a number: "
+    puts 'Please choose an option by entering a number: '
     puts '1 - add a book'
     puts '2 - add a music album'
     puts '3 - add a game'
@@ -113,8 +113,8 @@ class App
     header
     if @books.length >= 1
       @books.each_with_index do |book, i|
-        puts "#{i + 1} - Title: \"#{book.label.title}\", Author: \"author\", Publisher: \"#{book.publisher}\", "+
-        "Publish date: \"#{book.publish_date}\""
+        puts "#{i + 1} - Title: \"#{book.label.title}\", Author: \"author\", Publisher: \"#{book.publisher}\", " \
+             "Publish date: \"#{book.publish_date}\""
       end
     else
       puts "There's no book registered"
