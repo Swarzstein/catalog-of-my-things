@@ -37,7 +37,7 @@ module Store
     @books.each do |book|
       hash_arr << book_hash(book)
     end
-    File.open('storage/books.json', 'w') { |s| s << hash_arr.to_json }
+    File.open('data/books.json', 'w') { |s| s << hash_arr.to_json }
   end
 
   def save_labels
@@ -45,13 +45,13 @@ module Store
     @labels.each do |label|
       hash_arr << label_hash(label)
     end
-    File.open('storage/labels.json', 'w') { |s| s << hash_arr.to_json }
+    File.open('data/labels.json', 'w') { |s| s << hash_arr.to_json }
   end
 
   def load_labels
-    return [] unless File.exist?('storage/labels.json') && File.size?('storage/labels.json')
+    return [] unless File.exist?('data/labels.json') && File.size?('data/labels.json')
 
-    JSON.parse(File.read('storage/labels.json'))
+    JSON.parse(File.read('data/labels.json'))
   end
 
   def loader(books, labels)
@@ -73,9 +73,9 @@ module Store
   end
 
   def load_books
-    return unless File.exist?('storage/books.json') && File.size?('storage/books.json')
+    return unless File.exist?('data/books.json') && File.size?('data/books.json')
 
-    books = JSON.parse(File.read('storage/books.json'))
+    books = JSON.parse(File.read('data/books.json'))
     labels = load_labels
     return unless books.length.positive?
 

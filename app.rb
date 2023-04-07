@@ -1,8 +1,8 @@
 require_relative 'classes/book'
 require_relative 'classes/label'
 require_relative 'modules/store'
-require_relative 'music_album'
-require_relative 'genre'
+require_relative 'classes/music_album'
+require_relative 'classes/genre'
 require './modules/genre_module'
 require './modules/music_album_module'
 
@@ -10,7 +10,7 @@ class App
   include GenreModule
   include MusicAlbumModule
   include Store
-  
+
   def initialize
     @books = []
     @labels = []

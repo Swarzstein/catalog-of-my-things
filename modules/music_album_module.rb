@@ -1,30 +1,30 @@
 require_relative 'genre_module'
-require_relative 'label_module'
+# require_relative 'label_module'
 require './classes/music_album'
-require_relative 'author_module'
+# require_relative 'author_module'
 require 'json'
 
 module MusicAlbumModule
   module_function
 
   include GenreModule
-  include LabelModule
-  include AuthorModule
+  # include LabelModule
+  # include AuthorModule
 
   @music_albums = []
 
   def music_main
-    label = LabelModule.add_label_ui
+    # label = LabelModule.add_label_ui
     genre = GenreModule.show_genre
-    author = AuthorModule.add_author_ui
+    # author = AuthorModule.add_author_ui
     print('Enter the publish date (YYYY-MM-DD): ')
     publish_date = gets.chomp
     print('Is it on SPOTIFY (Y/N)?')
     on_spotify = gets.chomp
     on_spotify = on_spotify != ('n' || 'N')
     new_album = MusicAlbum.new(publish_date, on_spotify)
-    new_album.add_label(label)
-    new_album.add_author(author)
+    # new_album.add_label(label)
+    # new_album.add_author(author)
     new_album.add_genre(genre)
     @music_albums.push(new_album)
     puts 'New Music Album created!'
@@ -35,7 +35,8 @@ module MusicAlbumModule
       puts 'No music to display. You can add one.'
     else
       @music_albums.each do |music|
-        puts(" | Title: #{music.label.title} Author: #{music.author.first_name} #{music.author.last_name} Genre: #{music.genre.name} | ") # rubocop:disable Layout/LineLength
+        puts(" | Title: #{music.label.title} Author: #{music.author.first_name} " \
+             "#{music.author.last_name} Genre: #{music.genre.name} | ")
       end
     end
   end
