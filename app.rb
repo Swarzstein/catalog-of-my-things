@@ -18,7 +18,7 @@ class App
   end
 
   def clear_screen
-    # system('cls')
+    system('cls')
     system('clear')
   end
 
@@ -134,8 +134,6 @@ class App
     if @labels.length >= 1
       @labels.each_with_index do |label, i|
         puts "#{i + 1} - Title: \"#{label.title}\", Color: \"#{label.color}\" "
-        puts 'items'
-        puts label.items
       end
     else
       puts "There's no label registered"

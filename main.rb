@@ -72,11 +72,11 @@ end
 
 def main
   app = App.new
-  app.load_data
+  app.load
   menu(app)
   bye
   app.save
-  # system('cls')
+  system('cls')
   system('clear')
 end
 
