@@ -2,6 +2,7 @@ module GameModule
   def new_game
     genre = genre_getter
     label = label_getter
+    author = author_getter
     puts "\n*- Add a game -*\n"
     print 'Is it a multiplayer game? [Y/N]: '
     multiplayer = gets.chomp.to_s.downcase == 'y'
@@ -12,6 +13,7 @@ module GameModule
     game = Game.new(multiplayer, Date.parse(last_played_at), Date.parse(publish_date))
     genre.add_item(game)
     label.add_item(game)
+    author.add_item(game)
 
     @games.push(game)
     puts 'New Game created!'
@@ -58,7 +60,7 @@ module GameModule
     @games << game
   end
 
-  def game_pre_loader(games, labels, genres)
+  def game_pre_loader(games, labels, genres, authors)
     games.each do |h_game|
       date = h_game['publish_date']
       date_last_p = h_game['last_played_at']
@@ -67,7 +69,7 @@ module GameModule
 
       h_label = labels.find { |label| label['id'] == h_game['label'] }
       h_genre = genres.find { |genre| genre['id'] == h_game['genre'] }
-      # h_author = authors.find { |author| author['id'] == h_music_album['author'] }
+      h_author = authors.find { |author| author['id'] == h_game['author'] }
       game_loader(h_label, h_genre, game)
     end
   end

@@ -31,9 +31,11 @@ module BookModule
     book = Book.new(publisher, cover_state, Date.new(year, month, day))
     label = label_getter
     genre = genre_getter
+    author = author_getter
     # author = author_getter
     label.add_item(book)
     genre.add_item(book)
+    author.add_item(book)
     # author.add_item(book)
     @books << book
   end

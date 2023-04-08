@@ -1,46 +1,46 @@
-module LabelModule
-    def list_all_labels
-      if @labels.length >= 1
-        @labels.each_with_index { |label, i| puts "#{i + 1} - Title: \"#{label.title}\", Color: \"#{label.color}\" " }
+module AuthorModule
+    def list_all_authors
+      if @authors.length >= 1
+        @authors.each_with_index { |author, i| puts "#{i + 1} - First-Name: \"#{author.first_name}\", Last-Name: \"#{author.last_name}\" " }
       else
-        puts "There's no label registered"
+        puts "There's no author registered"
       end
     end
   
-    def select_label(index)
-      if index < @labels.length && index >= 0
-        @labels[index]
+    def select_author(index)
+      if index < @authors.length && index >= 0
+        @authors[index]
       elsif index == -1
-        print('New label title: ')
-        title = gets.chomp
-        print('New label color: ')
-        color = gets.chomp
-        label = Label.new(title, color)
-        @labels.push(label)
-        label
+        print('First-Name: ')
+        first_name = gets.chomp
+        print('Last-Name: ')
+        last_name = gets.chomp
+        author = Author.new(first_name, last_name)
+        @authors.push(author)
+        author
       end
     end
   
-    def label_getter
-      puts('Select label from the list:')
-      puts('0. Create a new label')
-      list_all_labels
+    def author_getter
+      puts('Select author from the list:')
+      puts('0. Create a new author')
+      list_all_authors
       option = gets.chomp
-      select_label(option.to_i - 1)
+      select_author(option.to_i - 1)
     end
   
-    def save_labels
+    def save_authors
       hash_arr = []
-      @labels.each do |label|
-        hash_arr << label_hash(label)
+      @authors.each do |author|
+        hash_arr << author_hash(author)
       end
-      File.write('./data/labels.json', JSON.pretty_generate(hash_arr))
+      File.write('./data/authors.json', JSON.pretty_generate(hash_arr))
     end
   
-    def load_labels
-      return [] unless File.exist?('data/labels.json') && File.size?('data/labels.json')
+    def load_authors
+      return [] unless File.exist?('data/authors.json') && File.size?('data/authors.json')
   
-      JSON.parse(File.read('data/labels.json'))
+      JSON.parse(File.read('data/authors.json'))
     end
   end
   

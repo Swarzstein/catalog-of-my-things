@@ -68,6 +68,13 @@ module Store
     }
   end
 
+  def author_hash(author)
+    items = []
+    author.items.each do |item|
+      items << { id: item.id, class:item.class.name }
+    end
+  end
+
   def genre_hash(genre)
     items = []
     genre.items.each do |item|

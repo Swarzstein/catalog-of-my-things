@@ -79,7 +79,12 @@ class App
     wait
   end
 
-  def all_authors; end
+  def all_authors
+  clear_screen
+  header
+  
+  wait
+  end
 
   # saving and loading data
   def save_data

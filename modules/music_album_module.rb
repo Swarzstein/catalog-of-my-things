@@ -2,7 +2,7 @@ module MusicAlbumModule
   def music_main
     genre = genre_getter
     label = label_getter
-    # author = author_getter
+    author = author_getter
     print('Enter the publish date (YYYY-MM-DD): ')
     publish_date = gets.chomp
     print('Is it on SPOTIFY (Y/N)?')
@@ -11,6 +11,7 @@ module MusicAlbumModule
     new_album = MusicAlbum.new(Date.parse(publish_date), on_spotify)
     genre.add_item(new_album)
     label.add_item(new_album)
+    author.add_item(new_album)
 
     @music_albums.push(new_album)
     puts 'New Music Album created!'
