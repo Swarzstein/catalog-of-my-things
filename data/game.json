@@ -1,0 +1,20 @@
+[
+  {
+    "id": 48896,
+    "genre": 1680995559,
+    "author": null,
+    "label": 55062,
+    "publish_date": {
+      "year": 2000,
+      "month": 12,
+      "day": 13
+    },
+    "archived": false,
+    "multiplayer": true,
+    "last_played_at": {
+      "year": 2023,
+      "month": 1,
+      "day": 1
+    }
+  }
+]

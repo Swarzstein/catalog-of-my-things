@@ -9,7 +9,7 @@ module GameModule
     last_played_at = gets.chomp
     print 'Published Date (YYYY-MM-DD): '
     publish_date = gets.chomp
-    game = Game.new(multiplayer, last_played_at, publish_date)
+    game = Game.new(multiplayer, Date.parse(last_played_at), Date.parse(publish_date))
     genre.add_item(game)
     label.add_item(game)
 
