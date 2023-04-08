@@ -2,22 +2,22 @@ require 'date'
 require_relative 'genre'
 
 class Item
-  attr_accessor :genre, :author, :lable, :publish_date, :archived
+  attr_accessor :genre, :author, :label, :publish_date, :archived
   attr_reader :id
 
   def initialize(publish_date)
-    @id = Random.new(100_000)
+    @id = Random.rand(100_000)
     @genre = nil
     @author = nil
-    @lable = nil
+    @label = nil
     @publish_date = publish_date
     @archived = false
   end
 
-  def add_genre(genre)
-    @genre = genre
-    genre.add_item(self) unless genre.items.include?(self)
-  end
+  # def add_genre(genre)
+  #   @genre = genre
+  #   genre.add_item(self) unless genre.items.include?(self)
+  # end
 
   private
 

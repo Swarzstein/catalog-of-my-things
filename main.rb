@@ -72,8 +72,10 @@ end
 
 def main
   app = App.new
+  app.load
   menu(app)
   bye
+  app.save
   system('cls')
   system('clear')
 end
