@@ -22,9 +22,9 @@ module Store
   def album_hash(album)
     {
       id: album.id,
-      genre: album.genre.id,
-      author: album.author.id,
-      label: album.label.id,
+      genre: album.genre&.id,
+      author: album.author&.id,
+      label: album.label&.id,
       publish_date: {
         year: album.publish_date.year,
         month: album.publish_date.month,
@@ -63,10 +63,11 @@ module Store
     save_books
     save_labels
     save_genre
+    save_music_album
   end
 
   def load
     load_books
-    # load_genres
+    load_music_albums
   end
 end

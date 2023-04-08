@@ -1,11 +1,29 @@
 [
   {
-    "id": 1680984898,
+    "id": 1680988943,
     "name": "Sci-Fi",
     "items": [
       {
-        "id": 47301,
+        "id": 81585,
         "class": "Book"
+      },
+      {
+        "id": 19522,
+        "class": "MusicAlbum"
+      },
+      {
+        "id": 26334,
+        "class": "MusicAlbum"
+      }
+    ]
+  },
+  {
+    "id": 1680988973,
+    "name": "Hip hop",
+    "items": [
+      {
+        "id": 78509,
+        "class": "MusicAlbum"
       }
     ]
   }

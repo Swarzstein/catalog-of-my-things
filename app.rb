@@ -32,7 +32,9 @@ class App
   end
 
   def add_album
+    header
     music_main
+    wait
   end
 
   def add_game

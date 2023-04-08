@@ -1,19 +1,8 @@
-require_relative 'genre_module'
-# require_relative 'label_module'
-require './classes/music_album'
-# require_relative 'author_module'
-require 'json'
-
 module MusicAlbumModule
-  include GenreModule
-  # include LabelModule
-  # include AuthorModule
-
-  # @music_albums = []
-
   def music_main
     # label = LabelModule.add_label_ui
-    genre = get_genre
+    genre = genre_getter
+    label = label_getter
     # author = AuthorModule.add_author_ui
     print('Enter the publish date (YYYY-MM-DD): ')
     publish_date = gets.chomp
@@ -25,6 +14,8 @@ module MusicAlbumModule
     # new_album.add_author(author)
     # new_album.add_genre(genre)
     genre.add_item(new_album)
+    label.add_item(new_album)
+
     @music_albums.push(new_album)
     puts 'New Music Album created!'
   end
@@ -34,8 +25,7 @@ module MusicAlbumModule
       puts 'No music to display. You can add one.'
     else
       @music_albums.each do |music|
-        puts(" | Title: #{music.label.title} Author: #{music.author.first_name} " \
-             "#{music.author.last_name} Genre: #{music.genre.name} | ")
+        puts("Publish Date : #{music.publish_date} ;  On Spotify: #{music.on_spotify} ; Genre: #{music.genre.name}")
       end
     end
   end
@@ -43,6 +33,7 @@ module MusicAlbumModule
   def save_music_album
     album_list = []
     @music_albums.each { |album| album_list << album_hash(album) }
+    puts album_list
     File.write('./data/music_album.json', JSON.pretty_generate(album_list))
   end
 
@@ -60,7 +51,7 @@ module MusicAlbumModule
 
     if o_label
       o_label.add_item(music_album)
-      @music_albums << music_album
+      # @music_albums << music_album
     else
       new_label = Label.new(h_label['title'], h_label['color'])
       new_label.add_item(music_album)
@@ -69,7 +60,7 @@ module MusicAlbumModule
 
     if o_genre
       o_genre.add_item(music_album)
-      @music_albums << music_album
+      # @music_albums << music_album
     else
       new_genre = Genre.new(h_genre['name'])
       new_genre.add_item(music_album)
@@ -92,15 +83,15 @@ module MusicAlbumModule
   end
 
   def load_music_albums
-    return unless File.exist?('data/music_albums.json') && File.size?('data/music_albums.json')
+    return unless File.exist?('./data/music_album.json') && File.size?('./data/music_album.json')
 
-    music_albums = JSON.parse(File.read('data/music_albums.json'))
+    music_albums = JSON.parse(File.read('./data/music_album.json'))
     labels = load_labels
     genres = load_genres
     return unless music_albums.length.positive?
 
     music_album_pre_loader(music_albums, labels, genres)
-    list_all_music_albums
-    wait
+    # list_all_music_albums
+    # wait
   end
 end
