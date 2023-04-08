@@ -2,37 +2,40 @@ module GameModule
     def new_game
       genre = genre_getter
       label = label_getter
-      print('Enter the publish date (YYYY-MM-DD): ')
+      puts "\n*- Add a game -*\n"
+      print 'Is it a multiplayer game? [Y/N]: '
+      multiplayer = gets.chomp.to_s.downcase == 'y'
+      print 'When was it last played at? (YYYY-MM-DD): '
+      last_played_at = gets.chomp
+      print 'Published Date (YYYY-MM-DD): '
       publish_date = gets.chomp
-      print('Is it on SPOTIFY (Y/N)?')
-      on_spotify = gets.chomp
-      on_spotify = on_spotify != ('n' || 'N')
-      new_album = Game.new(Date.parse(publish_date), on_spotify)
-      genre.add_item(new_album)
-      label.add_item(new_album)
+      game = Game.new(multiplayer, last_played_at, publish_date)
+      genre.add_item(game)
+      label.add_item(game)
   
-      @games.push(new_album)
-      puts 'New Music Album created!'
+      @games.push(game)
+      puts 'New Game created!'
     end
   
     def list_all_games
       if @games.empty?
-        puts 'No music to display. You can add one.'
+        puts 'No game to display. You can add one.'
       else
-        @games.each do |music|
-          puts("Publish Date : #{music.publish_date} ;  On Spotify: #{music.on_spotify} ; Genre: #{music.genre.name}")
+        @games.each do |game|
+          puts("- Publish date: #{game.publish_date} Last played: #{game.last_played_at}; Genre: #{game.genre.name}; Label: #{game.label.title}")
         end
       end
     end
   
-    def save_music_album
-      album_list = []
-      @games.each { |album| album_list << album_hash(album) }
-      puts album_list
-      File.write('./data/game.json', JSON.pretty_generate(album_list))
+    def save_games
+      game_list = []
+      @games.each { |game| game_list << game_hash(game) }
+      puts game_list
+      File.write('./data/game.json', JSON.pretty_generate(game_list))
     end
 
-    def music_album_loader(h_label, h_genre, game)
+
+    def game_loader(h_label, h_genre, game)
       o_label = @labels.find { |label| label.title == h_label['title'] && label.color == h_label['color'] }
       o_genre = @genres.find { |genre| genre.name == h_genre['name'] }
   
@@ -55,19 +58,20 @@ module GameModule
       @games << game
     end
   
-    def music_album_pre_loader(games, labels, genres)
-      games.each do |h_music_album|
-        date = h_music_album['publish_date']
-        game = Game.new(Date.new(date['year'], date['month'], date['day']), h_music_album['on?spotify'])
+    def game_pre_loader(games, labels, genres)
+      games.each do |h_game|
+        date = h_game['publish_date']
+        date_last_p = h_game['last_played_at']
+        game = Game.new(h_game['multiplayer'], Date.new(date_last_p['year'], date_last_p['month'], date_last_p['day']), Date.new(date['year'], date['month'], date['day']))
   
-        h_label = labels.find { |label| label['id'] == h_music_album['label'] }
-        h_genre = genres.find { |genre| genre['id'] == h_music_album['genre'] }
+        h_label = labels.find { |label| label['id'] == h_game['label'] }
+        h_genre = genres.find { |genre| genre['id'] == h_game['genre'] }
         # h_author = authors.find { |author| author['id'] == h_music_album['author'] }
         music_album_loader(h_label, h_genre, game)
       end
     end
   
-    def load_music_albums
+    def load_games
       return unless File.exist?('./data/game.json') && File.size?('./data/game.json')
   
       games = JSON.parse(File.read('./data/game.json'))
@@ -75,7 +79,7 @@ module GameModule
       genres = load_genres
       return unless games.length.positive?
   
-      music_album_pre_loader(games, labels, genres)
+      game_pre_loader(games, labels, genres)
     end
   end
   
