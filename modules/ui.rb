@@ -3,19 +3,19 @@ module UI
     puts "\npress enter to continue"
     gets.chomp
   end
-  
+
   def clear_screen
     system('cls')
     system('clear')
   end
-  
+
   def header
     clear_screen
     puts '############################'
     puts '### CATALOG OF MY THINGS ###'
     puts "############################\n\n"
   end
-  
+
   def menu
     header
     puts 'Please choose an option by entering a number: '
@@ -27,7 +27,7 @@ module UI
     menu unless op <= 4 && op.positive?
     op
   end
-  
+
   def items_lists
     header
     puts 'Please choose an option by entering a number: '
@@ -39,7 +39,7 @@ module UI
     items_lists unless op <= 4 && op.positive?
     op
   end
-  
+
   def other_lists
     header
     puts 'Please choose an option by entering a number: '
@@ -51,7 +51,7 @@ module UI
     others_lists unless op <= 4 && op.positive?
     op
   end
-  
+
   def add
     header
     puts 'Please choose an option by entering a number: '

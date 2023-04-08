@@ -1,5 +1,5 @@
 module BookModule
-  def get_cover_state
+  def cover_state_getter
     print 'cover state:'
     op = gets.chomp.to_i
     case op
@@ -9,18 +9,18 @@ module BookModule
       'bad'
     else
       puts 'Select a valid option'
-      get_cover_state
+      cover_state_getter
     end
   end
-  
+
   def new_book
     puts "Creating new book\n"
     print 'Publisher: '
     publisher = gets.chomp
-    puts "select cover state:"
-    puts "[1] Good"
-    puts "[2] Bad"
-    cover_state = get_cover_state
+    puts 'select cover state:'
+    puts '[1] Good'
+    puts '[2] Bad'
+    cover_state = cover_state_getter
     puts '-Published date-'
     print 'Year: '
     year = gets.chomp.to_i
@@ -29,10 +29,12 @@ module BookModule
     print 'Day: '
     day = gets.chomp.to_i
     book = Book.new(publisher, cover_state, Date.new(year, month, day))
-    label = get_label
-    genre = get_genre
+    label = label_getter
+    genre = genre_getter
+    # author = author_getter
     label.add_item(book)
     genre.add_item(book)
+    # author.add_item(book)
     @books << book
   end
 
@@ -46,4 +48,60 @@ module BookModule
       puts "There's no book registered"
     end
   end
+end
+
+def save_books
+  hash_arr = []
+  @books.each { |book| hash_arr << book_hash(book) }
+  File.write('./data/books.json', JSON.pretty_generate(hash_arr))
+end
+
+def book_loader(h_label, h_genre, book)
+  o_label = @labels.find { |label| label.title == h_label['title'] && label.color == h_label['color'] }
+  o_genre = @genres.find { |genre| genre.name == h_genre['name'] }
+
+  if o_label
+    o_label.add_item(book)
+    @books << book
+  else
+    new_label = Label.new(h_label['title'], h_label['color'])
+    new_label.add_item(book)
+    @labels << new_label
+  end
+
+  if o_genre
+    o_genre.add_item(book)
+    @books << book
+  else
+    new_genre = Genre.new(h_genre['name'])
+    new_genre.add_item(book)
+    @genres << new_genre
+  end
+
+  @books << book
+end
+
+def book_pre_loader(books, labels, genres)
+  books.each do |h_book|
+    date = h_book['publish_date']
+    book = Book.new(h_book['publisher'], h_book['cover_state'], Date.new(date['year'], date['month'], date['day']))
+
+    h_label = labels.find { |label| label['id'] == h_book['label'] }
+    h_genre = genres.find { |genre| genre['id'] == h_book['genre'] }
+    # h_author = authors.find { |author| author['id'] == h_book['author'] }
+    book_loader(h_label, h_genre, book)
+  end
+end
+
+def load_books
+  return unless File.exist?('data/books.json') && File.size?('data/books.json')
+
+  books = JSON.parse(File.read('data/books.json'))
+  labels = load_labels
+  genres = load_genres
+  return unless books.length.positive?
+
+  book_pre_loader(books, labels, genres)
+  list_all_books
+  wait
 end

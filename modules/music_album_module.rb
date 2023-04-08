@@ -42,26 +42,65 @@ module MusicAlbumModule
 
   def save_music_album
     album_list = []
-    @music_albums.each do |album|
-      album_obj = {
-        id: album.id,
-        genre: album.genre.id,
-        author: album.author.id,
-        label: album.label.id,
-        publish_date: album.publish_date,
-        on_spotify: album.on_spotify
-      }
-      album_list << album_obj
-    end
+    @music_albums.each { |album| album_list << album_hash(album) }
     File.write('./data/music_album.json', JSON.pretty_generate(album_list))
   end
 
-  def load_music_album
-    return unless JSON.parse(File.read('./memory/music_album.json')).any?
+  # def load_music_album
+  #   return unless JSON.parse(File.read('./memory/music_album.json')).any?
 
-    JSON.parse(File.read('./memory/music_album.json')).each do |album|
-      new_album = MusicAlbum.new(album['publish_date'], album['on_spotify'])
-      @music_albums << new_album
+  #    JSON.parse(File.read('./memory/music_album.json')).each do |album|
+  #      new_album = MusicAlbum.new(album['publish_date'], album['on_spotify'])
+  #      @music_albums << new_album
+  #    end
+  #  end
+  def music_album_loader(h_label, h_genre, music_album)
+    o_label = @labels.find { |label| label.title == h_label['title'] && label.color == h_label['color'] }
+    o_genre = @genres.find { |genre| genre.name == h_genre['name'] }
+
+    if o_label
+      o_label.add_item(music_album)
+      @music_albums << music_album
+    else
+      new_label = Label.new(h_label['title'], h_label['color'])
+      new_label.add_item(music_album)
+      @labels << new_label
     end
+
+    if o_genre
+      o_genre.add_item(music_album)
+      @music_albums << music_album
+    else
+      new_genre = Genre.new(h_genre['name'])
+      new_genre.add_item(music_album)
+      @genres << new_genre
+    end
+
+    @music_albums << music_album
+  end
+
+  def music_album_pre_loader(music_albums, labels, genres)
+    music_albums.each do |h_music_album|
+      date = h_music_album['publish_date']
+      music_album = MusicAlbum.new(Date.new(date['year'], date['month'], date['day']), h_music_album['on?spotify'])
+
+      h_label = labels.find { |label| label['id'] == h_music_album['label'] }
+      h_genre = genres.find { |genre| genre['id'] == h_music_album['genre'] }
+      # h_author = authors.find { |author| author['id'] == h_music_album['author'] }
+      music_album_loader(h_label, h_genre, music_album)
+    end
+  end
+
+  def load_music_albums
+    return unless File.exist?('data/music_albums.json') && File.size?('data/music_albums.json')
+
+    music_albums = JSON.parse(File.read('data/music_albums.json'))
+    labels = load_labels
+    genres = load_genres
+    return unless music_albums.length.positive?
+
+    music_album_pre_loader(music_albums, labels, genres)
+    list_all_music_albums
+    wait
   end
 end

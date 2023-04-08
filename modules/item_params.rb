@@ -1,27 +1,19 @@
 module ItemParameters
-  def list_all_labels
-    if @labels.length >= 1
-      @labels.each_with_index {|label, i| puts "#{i + 1} - Title: \"#{label.title}\", Color: \"#{label.color}\" "} 
-    else
-      puts "There's no label registered"
-    end
-  end
-  
-
-  def get_genre
+  def genre_getter
     puts('Select genre from the list:')
+    puts('0. Create a new genre')
     list_all_genre(list_of_genre)
-    puts("0. Create a new genre")
     option = gets.chomp
-    genre = select_genre(list_of_genre, (option.to_i-1))
-    genre
+    select_genre(list_of_genre, (option.to_i - 1))
   end
 
-  def get_label
-
+  def label_getter
+    puts('Select label from the list:')
+    puts('0. Create a new label')
+    list_all_labels
+    option = gets.chomp
+    select_label(option.to_i - 1)
   end
 
-  def get_author
-
-  end
+  def author_getter; end
 end
