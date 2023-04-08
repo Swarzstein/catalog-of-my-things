@@ -1,18 +1,14 @@
 module MusicAlbumModule
   def music_main
-    # label = LabelModule.add_label_ui
     genre = genre_getter
     label = label_getter
-    # author = AuthorModule.add_author_ui
+    # author = author_getter
     print('Enter the publish date (YYYY-MM-DD): ')
     publish_date = gets.chomp
     print('Is it on SPOTIFY (Y/N)?')
     on_spotify = gets.chomp
     on_spotify = on_spotify != ('n' || 'N')
     new_album = MusicAlbum.new(Date.parse(publish_date), on_spotify)
-    # new_album.add_label(label)
-    # new_album.add_author(author)
-    # new_album.add_genre(genre)
     genre.add_item(new_album)
     label.add_item(new_album)
 
@@ -33,25 +29,14 @@ module MusicAlbumModule
   def save_music_album
     album_list = []
     @music_albums.each { |album| album_list << album_hash(album) }
-    puts album_list
     File.write('./data/music_album.json', JSON.pretty_generate(album_list))
   end
-
-  # def load_music_album
-  #   return unless JSON.parse(File.read('./memory/music_album.json')).any?
-
-  #    JSON.parse(File.read('./memory/music_album.json')).each do |album|
-  #      new_album = MusicAlbum.new(album['publish_date'], album['on_spotify'])
-  #      @music_albums << new_album
-  #    end
-  #  end
   def music_album_loader(h_label, h_genre, music_album)
     o_label = @labels.find { |label| label.title == h_label['title'] && label.color == h_label['color'] }
     o_genre = @genres.find { |genre| genre.name == h_genre['name'] }
 
     if o_label
       o_label.add_item(music_album)
-      # @music_albums << music_album
     else
       new_label = Label.new(h_label['title'], h_label['color'])
       new_label.add_item(music_album)
@@ -60,7 +45,6 @@ module MusicAlbumModule
 
     if o_genre
       o_genre.add_item(music_album)
-      # @music_albums << music_album
     else
       new_genre = Genre.new(h_genre['name'])
       new_genre.add_item(music_album)
@@ -91,7 +75,5 @@ module MusicAlbumModule
     return unless music_albums.length.positive?
 
     music_album_pre_loader(music_albums, labels, genres)
-    # list_all_music_albums
-    # wait
   end
 end

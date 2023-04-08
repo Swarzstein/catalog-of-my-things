@@ -105,5 +105,4 @@ def load_books
   return unless books.length.positive?
 
   book_pre_loader(books, labels, genres)
-  wait
 end

@@ -1,33 +1,27 @@
 [
   {
-    "id": 1680995559,
+    "id": 1680995599,
     "name": "Sci-Fi",
     "items": [
       {
-        "id": 15948,
+        "id": 88482,
         "class": "Book"
       },
       {
-        "id": 80141,
+        "id": 12846,
         "class": "MusicAlbum"
       },
       {
-        "id": 52263,
+        "id": 1405,
         "class": "MusicAlbum"
       },
       {
-        "id": 48896,
+        "id": 23483,
+        "class": "MusicAlbum"
+      },
+      {
+        "id": 48263,
         "class": "Game"
-      }
-    ]
-  },
-  {
-    "id": 1680995559,
-    "name": "Hip hop",
-    "items": [
-      {
-        "id": 28796,
-        "class": "MusicAlbum"
       }
     ]
   }
