@@ -1,19 +1,8 @@
-require_relative 'genre_module'
-# require_relative 'label_module'
-require './classes/music_album'
-# require_relative 'author_module'
-require 'json'
-
 module MusicAlbumModule
-  include GenreModule
-  # include LabelModule
-  # include AuthorModule
-
-  # @music_albums = []
 
   def music_main
     # label = LabelModule.add_label_ui
-    genre = get_genre
+    genre = genre_getter
     # author = AuthorModule.add_author_ui
     print('Enter the publish date (YYYY-MM-DD): ')
     publish_date = gets.chomp
@@ -34,8 +23,7 @@ module MusicAlbumModule
       puts 'No music to display. You can add one.'
     else
       @music_albums.each do |music|
-        puts(" | Title: #{music.label.title} Author: #{music.author.first_name} " \
-             "#{music.author.last_name} Genre: #{music.genre.name} | ")
+        puts("Publish Date : #{music.publish_date} ;  On Spotify: #{music.on_spotify} ; Genre: #{music.genre.name}")
       end
     end
   end

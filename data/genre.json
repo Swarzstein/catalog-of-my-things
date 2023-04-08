@@ -1,11 +1,15 @@
 [
   {
-    "id": 1680984898,
+    "id": 1680986944,
     "name": "Sci-Fi",
     "items": [
       {
-        "id": 47301,
+        "id": 15519,
         "class": "Book"
+      },
+      {
+        "id": 1974,
+        "class": "MusicAlbum"
       }
     ]
   }
