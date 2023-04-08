@@ -33,9 +33,9 @@ module Store
       archived: game.archived,
       multiplayer: game.multiplayer,
       last_played_at: {
-        year : game.last_played_at.year,
-        month : game.last_played_at.month,
-        day : game.last_played_at.day
+        year: game.last_played_at.year,
+        month: game.last_played_at.month,
+        day: game.last_played_at.day
       }
     }
   end
