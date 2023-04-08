@@ -1,12 +1,16 @@
 [
   {
-    "id": 16093,
+    "id": 9116,
     "title": "New",
     "color": "Grae",
     "items": [
       {
-        "id": 15519,
+        "id": 34734,
         "class": "Book"
+      },
+      {
+        "id": 88022,
+        "class": "MusicAlbum"
       }
     ]
   }
