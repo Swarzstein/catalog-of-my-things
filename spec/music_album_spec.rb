@@ -1,7 +1,7 @@
 require_relative '../classes/music_album'
 
 describe 'Test Music Album class' do
-  album = MusicAlbum.new('2023-12-10', 'Y')
+  album = MusicAlbum.new(Date.parse('2023-12-10'), 'Y')
 
   it 'takes parameters and returns an album object' do
     expect(album).to be_instance_of(MusicAlbum)

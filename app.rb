@@ -20,10 +20,10 @@ class App
   def initialize
     @books = []
     @music_albums = []
-    # @games = []
+    @games = []
     @genres = []
     @labels = []
-    # @authors = []
+    @authors = []
   end
 
   def add_book
@@ -53,7 +53,12 @@ class App
     wait
   end
 
-  def all_games; end
+  def all_games
+    clear_screen
+    header
+    list_all_games
+    wait
+  end
 
   def all_genres
     clear_screen
