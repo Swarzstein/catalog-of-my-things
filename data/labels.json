@@ -1,31 +1,35 @@
 [
   {
-    "id": 20271,
+    "id": 22201,
     "title": "New",
     "color": "Grae",
     "items": [
       {
-        "id": 81585,
+        "id": 90030,
         "class": "Book"
       },
       {
-        "id": 19522,
+        "id": 57974,
         "class": "MusicAlbum"
       },
       {
-        "id": 26334,
+        "id": 57676,
         "class": "MusicAlbum"
       }
     ]
   },
   {
-    "id": 11756,
+    "id": 95549,
     "title": "test label",
     "color": "pink",
     "items": [
       {
-        "id": 78509,
+        "id": 38497,
         "class": "MusicAlbum"
+      },
+      {
+        "id": 79258,
+        "class": "Game"
       }
     ]
   }

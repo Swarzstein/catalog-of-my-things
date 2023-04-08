@@ -1,9 +1,9 @@
 [
   {
-    "id": 19522,
-    "genre": 1680988943,
+    "id": 57974,
+    "genre": 1680994955,
     "author": null,
-    "label": 20271,
+    "label": 22201,
     "publish_date": {
       "year": 1992,
       "month": 1,
@@ -12,10 +12,10 @@
     "on_spotify": null
   },
   {
-    "id": 26334,
-    "genre": 1680988943,
+    "id": 57676,
+    "genre": 1680994955,
     "author": null,
-    "label": 20271,
+    "label": 22201,
     "publish_date": {
       "year": 1992,
       "month": 1,
@@ -24,15 +24,15 @@
     "on_spotify": null
   },
   {
-    "id": 78509,
-    "genre": 1680988973,
+    "id": 38497,
+    "genre": 1680994958,
     "author": null,
-    "label": 11756,
+    "label": 95549,
     "publish_date": {
       "year": 1993,
       "month": 3,
       "day": 2
     },
-    "on_spotify": true
+    "on_spotify": null
   }
 ]

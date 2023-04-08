@@ -68,7 +68,7 @@ module GameModule
       h_label = labels.find { |label| label['id'] == h_game['label'] }
       h_genre = genres.find { |genre| genre['id'] == h_game['genre'] }
       # h_author = authors.find { |author| author['id'] == h_music_album['author'] }
-      music_album_loader(h_label, h_genre, game)
+      game_loader(h_label, h_genre, game)
     end
   end
 
