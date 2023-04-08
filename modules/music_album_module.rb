@@ -1,5 +1,4 @@
 module MusicAlbumModule
-
   def music_main
     # label = LabelModule.add_label_ui
     genre = genre_getter
