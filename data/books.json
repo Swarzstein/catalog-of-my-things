@@ -1,1 +1,16 @@
-[{"id":13033,"genre":1680980118,"author":null,"label":46182,"publish_date":{"year":2020,"month":2,"day":2},"archived":false,"publisher":"Norma","cover_state":"Good"}]
+[
+  {
+    "id": 47301,
+    "genre": 1680984898,
+    "author": null,
+    "label": 61090,
+    "publish_date": {
+      "year": 2020,
+      "month": 2,
+      "day": 2
+    },
+    "archived": false,
+    "publisher": "aoe",
+    "cover_state": "Good"
+  }
+]

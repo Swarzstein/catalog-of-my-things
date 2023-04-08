@@ -4,7 +4,7 @@ require 'json'
 module GenreModule
   # @all_genre = []
 
-  def get_genre(list_of_genre = @genres)
+  def genre_getter(list_of_genre = @genres)
     puts('Select genre from the list:')
     list_all_genre(list_of_genre)
     puts('0. Create a new genre')

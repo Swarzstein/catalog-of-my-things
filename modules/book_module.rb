@@ -6,7 +6,7 @@ module BookModule
     when 1
       'Good'
     when 2
-      'bad'
+      'Bad'
     else
       puts 'Select a valid option'
       cover_state_getter
@@ -57,6 +57,7 @@ def save_books
 end
 
 def book_loader(h_label, h_genre, book)
+  puts "label >> #{h_label}"
   o_label = @labels.find { |label| label.title == h_label['title'] && label.color == h_label['color'] }
   o_genre = @genres.find { |genre| genre.name == h_genre['name'] }
 
@@ -82,11 +83,13 @@ def book_loader(h_label, h_genre, book)
 end
 
 def book_pre_loader(books, labels, genres)
+  puts labels
   books.each do |h_book|
     date = h_book['publish_date']
     book = Book.new(h_book['publisher'], h_book['cover_state'], Date.new(date['year'], date['month'], date['day']))
 
     h_label = labels.find { |label| label['id'] == h_book['label'] }
+    puts "this label: #{h_label}"
     h_genre = genres.find { |genre| genre['id'] == h_book['genre'] }
     # h_author = authors.find { |author| author['id'] == h_book['author'] }
     book_loader(h_label, h_genre, book)
@@ -102,6 +105,5 @@ def load_books
   return unless books.length.positive?
 
   book_pre_loader(books, labels, genres)
-  list_all_books
   wait
 end

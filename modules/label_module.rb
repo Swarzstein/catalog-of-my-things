@@ -23,6 +23,14 @@ module LabelModule
     end
   end
 
+  def label_getter
+    puts('Select label from the list:')
+    puts('0. Create a new label')
+    list_all_labels
+    option = gets.chomp
+    select_label(option.to_i - 1)
+  end
+
   def save_labels
     hash_arr = []
     @labels.each do |label|
