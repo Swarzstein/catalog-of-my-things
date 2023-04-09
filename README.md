@@ -73,7 +73,7 @@ After you're finished please remove all the comments and instructions!
 
 ### Live Demo <a name="tech-stack"></a>
 
-![image](https://user-images.githubusercontent.com/71851719/230757441-b86f72a0-c49e-4058-9378-df720ee9ed58.png)
+[Live Demo](https://drive.google.com/file/d/1rRFdk17hmvexV0HO2HMhy6mT5xfQliXv/view?usp=sharing)
 
 <!-- GETTING STARTED -->
 
