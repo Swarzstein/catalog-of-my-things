@@ -73,6 +73,12 @@ module Store
     author.items.each do |item|
       items << { id: item.id, class:item.class.name }
     end
+    {
+      id: author.id,
+      first_name: author.first_name,
+      last_name: author.last_name,
+      items: items
+    }
   end
 
   def genre_hash(genre)
@@ -93,6 +99,7 @@ module Store
     save_genre
     save_music_album
     save_games
+    save_authors
   end
 
   def load

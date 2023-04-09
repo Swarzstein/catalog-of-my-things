@@ -1,16 +1,16 @@
 [
   {
-    "id": 45813,
-    "genre": 1681002149,
-    "author": null,
-    "label": 48810,
+    "id": 2965,
+    "genre": 1681013109,
+    "author": 37853,
+    "label": 87577,
     "publish_date": {
       "year": 2020,
       "month": 2,
       "day": 2
     },
     "archived": false,
-    "publisher": "GEA",
+    "publisher": "A20",
     "cover_state": "Good"
   }
 ]

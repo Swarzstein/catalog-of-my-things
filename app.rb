@@ -93,19 +93,9 @@ class App
   end
 
   def all_authors
-  clear_screen
-  header
-  
-  wait
-  end
-
-  # saving and loading data
-  def save_data
-    puts 'Data saved successfully !!! CONGRATS'
-  end
-
-  def load_data
-    GenreModule.load_genre
-    puts 'Data loaded sucessfully !!! CONGRATS'
+    clear_screen
+    header
+    list_all_authors
+    wait
   end
 end

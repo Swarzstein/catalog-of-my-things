@@ -34,8 +34,7 @@ module AuthorModule
       @authors.each do |author|
         hash_arr << author_hash(author)
       end
-      # File.exist?('data/books.json') ? File.write('./data/authors.json', JSON.pretty_generate(hash_arr)) :
-      File.open('store/rentals.json', 'w') { JSON.pretty_generate(hash_arr) }
+      File.write('./data/authors.json', JSON.pretty_generate(hash_arr))
     end
   
     def load_authors
