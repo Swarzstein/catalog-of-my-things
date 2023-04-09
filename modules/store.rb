@@ -71,7 +71,7 @@ module Store
   def author_hash(author)
     items = []
     author.items.each do |item|
-      items << { id: item.id, class:item.class.name }
+      items << { id: item.id, class: item.class.name }
     end
     {
       id: author.id,

@@ -1,9 +1,9 @@
 [
   {
-    "id": 2965,
-    "genre": 1681013109,
-    "author": 37853,
-    "label": 87577,
+    "id": 32961,
+    "genre": 1681015492,
+    "author": 73786,
+    "label": 40808,
     "publish_date": {
       "year": 2020,
       "month": 2,
@@ -11,6 +11,20 @@
     },
     "archived": false,
     "publisher": "A20",
+    "cover_state": "Good"
+  },
+  {
+    "id": 85496,
+    "genre": 1681015575,
+    "author": 73101,
+    "label": 61808,
+    "publish_date": {
+      "year": 2018,
+      "month": 5,
+      "day": 20
+    },
+    "archived": false,
+    "publisher": "Norma",
     "cover_state": "Good"
   }
 ]

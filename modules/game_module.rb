@@ -37,11 +37,7 @@ module GameModule
     File.write('./data/game.json', JSON.pretty_generate(game_list))
   end
 
-  def game_loader(h_label, h_genre, h_author, game)
-    o_label = @labels.find { |label| label.title == h_label['title'] && label.color == h_label['color'] }
-    o_genre = @genres.find { |genre| genre.name == h_genre['name'] }
-    o_author = @authors.find { |author| author.first_name == h_author['first_name'] && author.last_name == h_author['last_name'] }
-
+  def game_label_adder(o_label, h_label, game)
     if o_label
       o_label.add_item(game)
     else
@@ -49,7 +45,9 @@ module GameModule
       new_label.add_item(game)
       @labels << new_label
     end
+  end
 
+  def game_genre_adder(o_genre, h_genre, game)
     if o_genre
       o_genre.add_item(game)
     else
@@ -57,14 +55,28 @@ module GameModule
       new_genre.add_item(game)
       @genres << new_genre
     end
-    
+  end
+
+  def game_author_adder(o_author, h_author, game)
     if o_author
-        o_author.add_item(game)
-      else
-        new_author = Author.new(h_author['first_name'], h_author['last_name'])
-        new_author.add_item(game)
-        @authors << new_author
-      end
+      o_author.add_item(game)
+    else
+      new_author = Author.new(h_author['first_name'], h_author['last_name'])
+      new_author.add_item(game)
+      @authors << new_author
+    end
+  end
+
+  def game_loader(h_label, h_genre, h_author, game)
+    o_label = @labels.find { |label| label.title == h_label['title'] && label.color == h_label['color'] }
+    o_genre = @genres.find { |genre| genre.name == h_genre['name'] }
+    o_author = @authors.find do |author|
+      author.first_name == h_author['first_name'] && author.last_name == h_author['last_name']
+    end
+
+    game_label_adder(o_label, h_label, game)
+    game_genre_adder(o_genre, h_genre, game)
+    game_author_adder(o_author, h_author, game)
 
     @games << game
   end

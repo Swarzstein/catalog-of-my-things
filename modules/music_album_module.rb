@@ -33,11 +33,7 @@ module MusicAlbumModule
     File.write('./data/music_album.json', JSON.pretty_generate(album_list))
   end
 
-  def music_album_loader(h_label, h_genre, h_author, music_album)
-    o_label = @labels.find { |label| label.title == h_label['title'] && label.color == h_label['color'] }
-    o_genre = @genres.find { |genre| genre.name == h_genre['name'] }
-    o_author = @authors.find { |author| author.first_name == h_author['first_name'] && author.last_name == h_author['last_name'] }
-
+  def album_label_adder(o_label, h_label, music_album)
     if o_label
       o_label.add_item(music_album)
     else
@@ -45,7 +41,9 @@ module MusicAlbumModule
       new_label.add_item(music_album)
       @labels << new_label
     end
+  end
 
+  def album_genre_adder(_o_label, _h_label, music_album)
     if o_genre
       o_genre.add_item(music_album)
     else
@@ -53,7 +51,9 @@ module MusicAlbumModule
       new_genre.add_item(music_album)
       @genres << new_genre
     end
+  end
 
+  def album_author_adder(o_author, h_author, music_album)
     if o_author
       o_author.add_item(music_album)
     else
@@ -61,6 +61,18 @@ module MusicAlbumModule
       new_author.add_item(music_album)
       @authors << new_author
     end
+  end
+
+  def music_album_loader(h_label, h_genre, h_author, music_album)
+    o_label = @labels.find { |label| label.title == h_label['title'] && label.color == h_label['color'] }
+    o_genre = @genres.find { |genre| genre.name == h_genre['name'] }
+    o_author = @authors.find do |author|
+      author.first_name == h_author['first_name'] && author.last_name == h_author['last_name']
+    end
+
+    album_label_adder(o_label, h_label, music_album)
+    album_genre_adder(o_genre, h_genre, music_album)
+    album_author_adder(o_author, h_author, music_album)
 
     @music_albums << music_album
   end

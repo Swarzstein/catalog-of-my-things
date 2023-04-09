@@ -33,12 +33,24 @@ class App
   end
 
   def string_to_date(date_string)
-    begin
-      Date.parse(date_string)
-    rescue ArgumentError
-      print 'Please insert date in [YYYY-MM-DD] format'
-      date_string = gets.chomp
-      string_to_date(date_string)
+    Date.parse(date_string)
+  rescue ArgumentError
+    print 'Please insert date in [YYYY-MM-DD] format'
+    date_string = gets.chomp
+    string_to_date(date_string)
+  end
+
+  def cover_state_getter
+    print 'cover state:'
+    op = gets.chomp.to_i
+    case op
+    when 1
+      'Good'
+    when 2
+      'Bad'
+    else
+      puts 'Select a valid option'
+      cover_state_getter
     end
   end
 
