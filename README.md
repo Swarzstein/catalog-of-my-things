@@ -71,6 +71,10 @@ After you're finished please remove all the comments and instructions!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Live Demo <a name="tech-stack"></a>
+
+![image](https://user-images.githubusercontent.com/71851719/230757441-b86f72a0-c49e-4058-9378-df720ee9ed58.png)
+
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
