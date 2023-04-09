@@ -3,6 +3,7 @@ require_relative 'classes/label'
 require_relative 'classes/music_album'
 require_relative 'classes/genre'
 require_relative 'classes/game'
+require_relative 'classes/author'
 require_relative 'modules/store'
 require_relative 'modules/ui'
 require_relative 'modules/book_module'
@@ -10,6 +11,7 @@ require_relative 'modules/label_module'
 require_relative 'modules/genre_module'
 require_relative 'modules/music_album_module'
 require_relative 'modules/game_module'
+require_relative 'modules/author_module'
 
 class App
   include UI
@@ -19,6 +21,7 @@ class App
   include GenreModule
   include LabelModule
   include GameModule
+  include AuthorModule
 
   def initialize
     @books = []

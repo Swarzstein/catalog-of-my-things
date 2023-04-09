@@ -58,10 +58,11 @@ def save_books
   File.write('./data/books.json', JSON.pretty_generate(hash_arr))
 end
 
-def book_loader(h_label, h_genre, book)
-  puts "label >> #{h_label}"
+def book_loader(h_label, h_genre, h_author, book)
+  puts "label >> #{h_author}"
   o_label = @labels.find { |label| label.title == h_label['title'] && label.color == h_label['color'] }
   o_genre = @genres.find { |genre| genre.name == h_genre['name'] }
+  o_author = @authors.find { |author| author.first_name == h_author['first_name'] && author.last_name == h_author['last_name'] }
 
   if o_label
     o_label.add_item(book)
@@ -80,11 +81,19 @@ def book_loader(h_label, h_genre, book)
     new_genre.add_item(book)
     @genres << new_genre
   end
+  
+  if o_author
+    o_author.add_item(book)
+  else
+    new_author = Author.new(h_author['first_name'], h_author['last_name'])
+    new_author.add_item(book)
+    @authors << new_author
+  end
 
   @books << book
 end
 
-def book_pre_loader(books, labels, genres)
+def book_pre_loader(books, labels, genres, authors)
   puts labels
   books.each do |h_book|
     date = h_book['publish_date']
@@ -93,8 +102,8 @@ def book_pre_loader(books, labels, genres)
     h_label = labels.find { |label| label['id'] == h_book['label'] }
     puts "this label: #{h_label}"
     h_genre = genres.find { |genre| genre['id'] == h_book['genre'] }
-    # h_author = authors.find { |author| author['id'] == h_book['author'] }
-    book_loader(h_label, h_genre, book)
+    h_author = authors.find { |author| author['id'] == h_book['author'] }
+    book_loader(h_label, h_genre, h_author, book)
   end
 end
 
@@ -104,7 +113,8 @@ def load_books
   books = JSON.parse(File.read('data/books.json'))
   labels = load_labels
   genres = load_genres
+  authors = load_authors
   return unless books.length.positive?
 
-  book_pre_loader(books, labels, genres)
+  book_pre_loader(books, labels, genres, authors)
 end
