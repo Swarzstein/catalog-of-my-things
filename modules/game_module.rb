@@ -7,10 +7,10 @@ module GameModule
     print 'Is it a multiplayer game? [Y/N]: '
     multiplayer = gets.chomp.to_s.downcase == 'y'
     print 'When was it last played at? (YYYY-MM-DD): '
-    last_played_at = gets.chomp
+    last_played_at = string_to_date(gets.chomp)
     print 'Published Date (YYYY-MM-DD): '
-    publish_date = gets.chomp
-    game = Game.new(multiplayer, Date.parse(last_played_at), Date.parse(publish_date))
+    publish_date = string_to_date(gets.chomp)
+    game = Game.new(multiplayer, last_played_at, publish_date)
     genre.add_item(game)
     label.add_item(game)
     author.add_item(game)

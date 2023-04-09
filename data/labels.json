@@ -1,35 +1,12 @@
 [
   {
-    "id": 86366,
-    "title": "New",
-    "color": "Grae",
+    "id": 46032,
+    "title": "gaa",
+    "color": "brow",
     "items": [
       {
-        "id": 88482,
+        "id": 45813,
         "class": "Book"
-      },
-      {
-        "id": 12846,
-        "class": "MusicAlbum"
-      },
-      {
-        "id": 1405,
-        "class": "MusicAlbum"
-      },
-      {
-        "id": 48263,
-        "class": "Game"
-      }
-    ]
-  },
-  {
-    "id": 34281,
-    "title": "test label",
-    "color": "pink",
-    "items": [
-      {
-        "id": 23483,
-        "class": "MusicAlbum"
       }
     ]
   }

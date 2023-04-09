@@ -1,27 +1,11 @@
 [
   {
-    "id": 1680995599,
+    "id": 1681002149,
     "name": "Sci-Fi",
     "items": [
       {
-        "id": 88482,
+        "id": 45813,
         "class": "Book"
-      },
-      {
-        "id": 12846,
-        "class": "MusicAlbum"
-      },
-      {
-        "id": 1405,
-        "class": "MusicAlbum"
-      },
-      {
-        "id": 23483,
-        "class": "MusicAlbum"
-      },
-      {
-        "id": 48263,
-        "class": "Game"
       }
     ]
   }

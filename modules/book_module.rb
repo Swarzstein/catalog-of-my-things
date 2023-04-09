@@ -94,7 +94,6 @@ def book_loader(h_label, h_genre, h_author, book)
 end
 
 def book_pre_loader(books, labels, genres, authors)
-  puts labels
   books.each do |h_book|
     date = h_book['publish_date']
     book = Book.new(h_book['publisher'], h_book['cover_state'], Date.new(date['year'], date['month'], date['day']))

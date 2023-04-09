@@ -32,6 +32,16 @@ class App
     @authors = []
   end
 
+  def string_to_date(date_string)
+    begin
+      Date.parse(date_string)
+    rescue ArgumentError
+      print 'Please insert date in [YYYY-MM-DD] format'
+      date_string = gets.chomp
+      string_to_date(date_string)
+    end
+  end
+
   def add_book
     header
     new_book
