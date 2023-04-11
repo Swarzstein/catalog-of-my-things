@@ -19,6 +19,27 @@ module Store
     }
   end
 
+  def game_hash(game)
+    {
+      id: game.id,
+      genre: game.genre&.id,
+      author: game.author&.id,
+      label: game.label&.id,
+      publish_date: {
+        year: game.publish_date.year,
+        month: game.publish_date.month,
+        day: game.publish_date.day
+      },
+      archived: game.archived,
+      multiplayer: game.multiplayer,
+      last_played_at: {
+        year: game.last_played_at.year,
+        month: game.last_played_at.month,
+        day: game.last_played_at.day
+      }
+    }
+  end
+
   def album_hash(album)
     {
       id: album.id,
@@ -47,6 +68,19 @@ module Store
     }
   end
 
+  def author_hash(author)
+    items = []
+    author.items.each do |item|
+      items << { id: item.id, class: item.class.name }
+    end
+    {
+      id: author.id,
+      first_name: author.first_name,
+      last_name: author.last_name,
+      items: items
+    }
+  end
+
   def genre_hash(genre)
     items = []
     genre.items.each do |item|
@@ -64,10 +98,13 @@ module Store
     save_labels
     save_genre
     save_music_album
+    save_games
+    save_authors
   end
 
   def load
     load_books
     load_music_albums
+    load_games
   end
 end

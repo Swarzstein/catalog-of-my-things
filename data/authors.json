@@ -1,0 +1,28 @@
+[
+  {
+    "id": 82612,
+    "first_name": "Garik",
+    "last_name": "Fazhet",
+    "items": [
+      {
+        "id": 11196,
+        "class": "Book"
+      },
+      {
+        "id": 88978,
+        "class": "Game"
+      }
+    ]
+  },
+  {
+    "id": 87217,
+    "first_name": "Fahra",
+    "last_name": "Granadillo",
+    "items": [
+      {
+        "id": 13925,
+        "class": "Book"
+      }
+    ]
+  }
+]

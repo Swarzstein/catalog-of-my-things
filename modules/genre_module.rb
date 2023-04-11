@@ -1,9 +1,4 @@
-# require_relative '../classes/genre'
-require 'json'
-
 module GenreModule
-  # @all_genre = []
-
   def genre_getter(list_of_genre = @genres)
     puts('Select genre from the list:')
     list_all_genre(list_of_genre)
@@ -49,11 +44,6 @@ module GenreModule
   def load_genres
     return unless File.exist?('data/genre.json') && File.size?('data/genre.json')
 
-    # JSON.parse(File.read('data/genre.json')).each do |genre|
-    #  new_genre = Genre.new(genre['name'])
-    #  new_genre.id = genre['id']
-    #  @genres << new_genre
-    # end
     JSON.parse(File.read('data/genre.json'))
   end
 end

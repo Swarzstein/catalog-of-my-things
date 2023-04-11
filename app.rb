@@ -2,12 +2,16 @@ require_relative 'classes/book'
 require_relative 'classes/label'
 require_relative 'classes/music_album'
 require_relative 'classes/genre'
+require_relative 'classes/game'
+require_relative 'classes/author'
 require_relative 'modules/store'
 require_relative 'modules/ui'
 require_relative 'modules/book_module'
 require_relative 'modules/label_module'
 require_relative 'modules/genre_module'
 require_relative 'modules/music_album_module'
+require_relative 'modules/game_module'
+require_relative 'modules/author_module'
 
 class App
   include UI
@@ -16,14 +20,38 @@ class App
   include BookModule
   include GenreModule
   include LabelModule
+  include GameModule
+  include AuthorModule
 
   def initialize
     @books = []
     @music_albums = []
-    # @games = []
+    @games = []
     @genres = []
     @labels = []
-    # @authors = []
+    @authors = []
+  end
+
+  def string_to_date(date_string)
+    Date.parse(date_string)
+  rescue ArgumentError
+    print 'Please insert date in [YYYY-MM-DD] format'
+    date_string = gets.chomp
+    string_to_date(date_string)
+  end
+
+  def cover_state_getter
+    print 'cover state:'
+    op = gets.chomp.to_i
+    case op
+    when 1
+      'Good'
+    when 2
+      'Bad'
+    else
+      puts 'Select a valid option'
+      cover_state_getter
+    end
   end
 
   def add_book
@@ -38,7 +66,9 @@ class App
   end
 
   def add_game
-    puts 'Add a new Game'
+    header
+    new_game
+    wait
   end
 
   def all_books
@@ -53,7 +83,12 @@ class App
     wait
   end
 
-  def all_games; end
+  def all_games
+    clear_screen
+    header
+    list_all_games
+    wait
+  end
 
   def all_genres
     clear_screen
@@ -69,15 +104,10 @@ class App
     wait
   end
 
-  def all_authors; end
-
-  # saving and loading data
-  def save_data
-    puts 'Data saved successfully !!! CONGRATS'
-  end
-
-  def load_data
-    GenreModule.load_genre
-    puts 'Data loaded sucessfully !!! CONGRATS'
+  def all_authors
+    clear_screen
+    header
+    list_all_authors
+    wait
   end
 end

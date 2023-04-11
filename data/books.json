@@ -1,16 +1,30 @@
 [
   {
-    "id": 81585,
-    "genre": 1680988943,
-    "author": null,
-    "label": 20271,
+    "id": 11196,
+    "genre": 1681019652,
+    "author": 82612,
+    "label": 4911,
     "publish_date": {
       "year": 2020,
       "month": 2,
       "day": 2
     },
     "archived": false,
-    "publisher": "aoe",
+    "publisher": "A20",
+    "cover_state": "Good"
+  },
+  {
+    "id": 13925,
+    "genre": 1681019652,
+    "author": 87217,
+    "label": 19873,
+    "publish_date": {
+      "year": 2018,
+      "month": 5,
+      "day": 20
+    },
+    "archived": false,
+    "publisher": "Norma",
     "cover_state": "Good"
   }
 ]
