@@ -24,7 +24,7 @@ module GameModule
       puts 'No game to display. You can add one.'
     else
       @games.each do |game|
-        puts("- Publish date: #{game.publish_date} Last played: #{game.last_played_at}; "\
+        puts("- Publish date: #{game.publish_date} Last played: #{game.last_played_at}; " \
              "Genre: #{game.genre.name}; Label: #{game.label.title}")
       end
     end
